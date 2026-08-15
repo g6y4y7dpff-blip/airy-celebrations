@@ -1,0 +1,12 @@
+const menuButton=document.querySelector('.menu-toggle');
+const nav=document.querySelector('.nav');
+menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'×':'☰';});
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='☰';}));
+const lightbox=document.querySelector('.lightbox');
+const lightboxImg=lightbox.querySelector('img');
+const closeLightbox=()=>{lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');lightboxImg.src='';};
+document.querySelectorAll('.gallery-item').forEach(item=>item.addEventListener('click',()=>{lightboxImg.src=item.dataset.full;lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');}));
+lightbox.querySelector('.lightbox-close').addEventListener('click',closeLightbox);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+document.getElementById('year').textContent=new Date().getFullYear();
