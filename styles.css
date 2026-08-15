@@ -4,7 +4,7 @@
 @media(max-width:560px){.section-shell{width:min(var(--max),calc(100% - 28px))}.hero-content{width:calc(100% - 28px)}.hero-content h1{font-size:3.05rem}.hero-content>p:not(.eyebrow){font-size:1rem}.intro{padding:78px 0}.services{padding-bottom:80px}.gallery-section{padding:75px 0}.gallery{grid-template-columns:1fr;grid-auto-rows:390px}.gallery-item.tall{grid-row:span 1}.about-photo img{height:440px}.quote{padding:78px 0}.quote-form{padding:24px 18px}.form-row.two{grid-template-columns:1fr}.footer-links{display:grid;gap:14px}}
 @media (max-width:850px){
   .brand img{
-    width:120px;
+    width:150px;
     height:auto;
   }
 }
