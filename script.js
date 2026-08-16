@@ -10,3 +10,63 @@ lightbox.querySelector('.lightbox-close').addEventListener('click',closeLightbox
 lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 document.getElementById('year').textContent=new Date().getFullYear();
+// Recent Celebrations Slideshow
+
+const slides = document.querySelectorAll('.gallery-slider .slide');
+const prevButton = document.querySelector('.slider-prev');
+const nextButton = document.querySelector('.slider-next');
+const dotsContainer = document.querySelector('.slider-dots');
+
+let currentSlide = 0;
+let slideTimer;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+  });
+
+  document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+
+  currentSlide = index;
+}
+
+slides.forEach((slide, index) => {
+  const dot = document.createElement('button');
+  dot.className = 'slider-dot';
+  dot.setAttribute('aria-label', `Go to photo ${index + 1}`);
+
+  dot.addEventListener('click', () => {
+    showSlide(index);
+    restartTimer();
+  });
+
+  dotsContainer.appendChild(dot);
+});
+
+function nextSlide() {
+  showSlide((currentSlide + 1) % slides.length);
+}
+
+function previousSlide() {
+  showSlide((currentSlide - 1 + slides.length) % slides.length);
+}
+
+function restartTimer() {
+  clearInterval(slideTimer);
+  slideTimer = setInterval(nextSlide, 3000);
+}
+
+nextButton.addEventListener('click', () => {
+  nextSlide();
+  restartTimer();
+});
+
+prevButton.addEventListener('click', () => {
+  previousSlide();
+  restartTimer();
+});
+
+showSlide(0);
+restartTimer();
